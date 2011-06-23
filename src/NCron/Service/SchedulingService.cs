@@ -40,7 +40,7 @@ namespace NCron.Service
             set { _logFactory = value; }
         }
 
-        internal SchedulingService()
+        public SchedulingService()
         {
             _timer = new Timer(TimerCallbackHandler);
             _queue = new IntervalHeap<ScheduledJob>();
@@ -71,13 +71,13 @@ namespace NCron.Service
             _namedEntries.Add(name, executionWrapper);
         }
 
-        internal void Start()
+        public void Start()
         {
             _head = _queue.DeleteMin();
             TimerCallbackHandler(null);
         }
 
-        internal void Stop()
+        public void Stop()
         {
             _timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
@@ -138,7 +138,7 @@ namespace NCron.Service
             }
         }
 
-        internal void ExecuteNamedJob(string name)
+        public void ExecuteNamedJob(string name)
         {
             JobExecutionWrapper executionWrapper;
 
